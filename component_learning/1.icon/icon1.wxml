@@ -1,0 +1,28 @@
+<!--icon组件的学习：第一部分：原生组件-->
+
+<!--学习组件1：原生icon组件-->
+
+<!--1.官方文档提供了几个原生的icon：（只有不到10个）
+		微信小程序官方文档的--组件--选择icon组件
+		1.type：填写如success success_no_circle等
+		2.size：图片像素单位px与rpx(responsive pixel响应式像素)
+		3.color：跟css的定义一样
+
+注：解释rpx是什么单位：
+真实的屏幕面积被分为750个rpx等分。	
+	ihpone6是比较特殊的设备宽度750px，长度1334px
+	在 iPhone 6 上，1rpx 对应着 0.5 个px，物理像素。
+	默认的文本大小为28rpx单位。-->
+
+<!--基本示例：success的icon组件-->
+<view>
+  <icon type="success" color ="blue" size="100rpx" />
+  <text>Hello, Mini Program!</text>
+</view>
+<!--注：view即类似html里面的div用来布局的元素，后面会了解-->
+
+
+<view>
+  <icon type="success" color ="blue" size="100rpx"  style="background:grey;"/>
+</view>
+<!--  注：理解--icon是"像素的集合体"。(更改color就是更改icon的像素集合的颜色，有的icon就是做成了中间镂空的。这种如果被修改颜色，依旧会镂空，比如看起来的绿底白色对号，其实白色对号那里是镂空的，显示的是背景颜色。)-->
