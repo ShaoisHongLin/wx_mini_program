@@ -1,0 +1,20 @@
+
+/* 通过网站将svg转换为bse64的使用svg示例：*/
+
+/* 定义一个类用于 SVG 图标 */
+
+/*----wxml部分：<text class="heart-fill"></text>-----*/
+
+.heart-fill {
+    display: block;
+    width: 100px;  /* 可根据需要调整宽度 */
+    height: 100px; /* 可根据需要调整高度 */
+    background-repeat: no-repeat;
+    background-size: contain; /* 确保 SVG 图标完全填充容器，不失真 */
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNzE1MzA2MDgwMTA5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9Ijg5NzkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDgiIGhlaWdodD0iNDgiPjxwYXRoIGQ9Ik03NjAuMzg0IDY0YzQ3LjgwOCAwIDkxLjk2OCAxMS45NjggMTMyLjM1MiAzNS44NGEyNjQuMzIgMjY0LjMyIDAgMCAxIDk1Ljg3MiA5Ny4xNTJBMjYzLjY4IDI2My42OCAwIDAgMSAxMDI0IDMzMC44OGMwIDM0Ljc1Mi02LjU5MiA2OC41NDQtMTkuNzEyIDEwMS4zMTJhMjYyLjQgMjYyLjQgMCAwIDEtNTcuNTM2IDg3LjQyNEw1MTIgOTYwIDc3LjI0OCA1MTkuNjhBMjY4LjggMjY4LjggMCAwIDEgMCAzMzAuODhjMC00OC4zODQgMTEuNzc2LTkzLjA1NiAzNS4zOTItMTMzLjk1MkEyNjQuMzIgMjY0LjMyIDAgMCAxIDEzMS4yIDk5Ljg0IDI1NS4yOTYgMjU1LjI5NiAwIDAgMSAyNjMuNjggNjQgMjYwLjczNiAyNjAuNzM2IDAgMCAxIDQ0OS45MiAxNDIuMjA4bDYyLjA4IDYyLjkxMiA2Mi4xNDQtNjIuOTEyYTI1OC45NDQgMjU4Ljk0NCAwIDAgMSA4Ni4zMzYtNTguMjRBMjU5LjU4NCAyNTkuNTg0IDAgMCAxIDc2MC41MTIgNjRoLTAuMTI4eiIgZmlsbD0iIzI2MjYyNiIgcC1pZD0iODk4MCI+PC9wYXRoPjwvc3ZnPg==');
+  }
+  
+  /**
+使用svg或者svg转base64的优点：
+1.大小拉大拉小不会模糊锯齿，具有较高清晰度，适合设备之间分辨率多样的场景提供较好的视觉效果。
+2.文件大小  小于了"普通的img和png图标"，对程序性能影响较小，虽然性能略次于iconfont但是已经足够。

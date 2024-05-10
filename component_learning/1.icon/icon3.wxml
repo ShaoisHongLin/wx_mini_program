@@ -1,0 +1,12 @@
+<!--svg(Scalable Vector Graphics)转base64格式-----"可缩放矢量图"
+
+---前置知识1：
+svg是文本文件还是类似img的图片文件?
+1.svg是文本描述文件，描述了图标的绘制方式，SVG（可缩放矢量图形）文件通常比传统的位图图像（如 PNG 或 JPEG）要小很多，尤其是在涉及图形或图标等简单设计时。这是因为 SVG 文件以文本格式描述图像，
+
+2.svg的来源很多，可以用制图的工具或者直接下载svg格式文件。
+
+---前置知识2
+微信小程序不支持直接使用svg格式，只能转化为base64格式
+下载的svg,可以通过一些网站，比如www.sojson.com/image2base64.html-->
+<text class="heart-fill"></text>
