@@ -1,8 +1,15 @@
-/*第一步：你需要上网下载你需要用到的图标素材，它们需要先被保存是svg格式*/
-/*第二步：你需要使用在线工具将svg矢量图标转化为字体文件/
+/*这部分wxss用于介绍具体如何理解iconfont的使用以及具体创建iconfont项目和代码中使用iconfont项目*/
 
-/**
-前置知识：字体文件的大致格式分为：
+/*
+使用iconfont方案的unicode方式最关键的就是对于字体文件拥有理解，iconfont这套图标方案，其本质是字体，需要你导入字体文件。
+
+
+1.字体文件它可以是较大型网站内随手可以下载的资源，下面的步骤里面有介绍如何新建iconfont项目，并且下载里面的字体资源，以及如何在IDE中使用下载了的代码包。
+2.字体文件也可以是你突发奇想找到一个有趣的svg图片文件，将其用转化格式网站转化为下面几种字体文件格式。
+*/
+
+/*
+知识：字体文件的大致格式分为：
 eot，归属于opentype字体，微软ie浏览器专用
 ttf，归属于truetype字体。
 
@@ -11,51 +18,65 @@ woff，woff2是移动开发专用的矢量字体格式，是对于type1、truety
 一般在@font-face代码里，会链接不同的字体源，以便兼容各种浏览器，浏览器从font-face列表里找到第一个可用的就不会继续查找其它格式了。
 
 ----结论：小程序种尽量使用woff和woff2.
-**/
+*/
 
 
 /*
 具体创建自定义iconfont项目的指南：
 
-------一、首先新建一个空项目
+(一)---首先新建一个空项目
 www.iconfont.cn进入阿里巴巴矢量库官网--选择resource--myproject--右侧新建new project
+
 
 具体填写iconfont项目的主要内容：
 
 1.project名称-----无所谓，因为后面不会用到，只是个文件夹名，用于区分不同iconfont项目。
 2.details简单描述------也无所谓，只是对于iconfont的描述。
+3.FontClass/Symbol prefix，默认写fontclass即可。
 
-3.FontClass/Symbol prefix在html引用它时候使用的前缀，加了这个前缀的图标会按照该iconfont项目进行处理，一般如下格式配套使用
+(解释：对应的是wxml的引用中class属性对应的其中一个class，一般class会写成，两个，是为了配合类选择器而使用，class=iconfont是为了为所有的iconfont设定样式，而class=iconfont-前缀的具体图标,是针对单独的具体图标，比如爱心图标在wxss中设定样式。
+以某爱心图标为如下：
 
-<text> class="icon icon-某元素名称"></text>
-.某元素名称::before{
-	content:"\e001";------------------这里提取了$&e001的\e001
-	}
+解释：在wxml中，
+<text class=iconfont iconfont-heart>
 
-(这两行涉及到了类选择器.和伪元素选择器::before)
-回顾css知识，".选择器::before"------伪类选择器before，在选择的元素前插入content内容，并可以设置该content的颜色样式等效果,不会影响html的布局结构
 
-4.Font Family
-
-在CSS中使用的`font-family。意味着填写的名称可以与css里面的font-family属性配合使用。假设我取名为iconfont一般如下：
+解释：在wxss中，
 @font-face {
 	font-family:"iconfont"
 }
+.iconfont{
 
+    font-family: 'iconfont';
+
+    color: gray;
+
+    font-size: 30px;
+
+  }
+
+.icon-searchicon::before{
+
+    content: '\e946';
+
+}
+
+以上部分内容都是为了解释生成的文档中，
+fontclass的前缀对应的是wxml中的"class=iconfont-某图标"处你设定的前缀，一般就默认iconfont。因为类选择器是自己取名
+)
 5.需要勾选的字体源WOFF WOFF2 TTF为默认选项即可。
 
 
-以上内容填写结束后，即可生成对应的新的空项目。
+1-5内容填写结束后，即可生成对应的新的空项目。
+
+(二)---在iconfont项目中添加iconfont素材
+
+1.有了空项目之后，通过购物车或者知名网站的资源（如FontAwesome、Material Icons等）加入到你的项目中，也可以先编辑一下再进行修改。
+
+2.之后下载代码download Code。
 
 
-------二、接下来你要点击靠右侧的上传图片到我的项目
-1.你可以自己制作设计的图标上传
-2.你可以从外网下载开源图标，如FontAwesome、Material Icons等，这些图标库提供了大量的图标，并且通常带有明确的许可协议，允许在特定条件下免费使用
-3.你可以从阿里巴巴的icon sets里面找到certified sets并查看详情里面是否标注可以免费使用。
-
-4.挑选你想要的图标加入你的购物车，购物车里面选择添加到项目，添加之后编辑你想要的修改，之后下载代码download Code。
-
-
+(三)--
 1. 点击“Download Code”（下载代码）。
 2. 系统会生成包含所有图标的字体文件和一个CSS文件。字体文件通常包括EOT, WOFF, SVG, TTF等格式，以确保在不同的浏览器中都能良好工作。
 4. 下载的压缩包中将包括CSS文件，里面预定义了所有图标的类，以及对应的字体文件。
@@ -68,52 +89,56 @@ iconfont.json
 iconfont.woff--------1   1-3无服务器可以直接在本地进行测试使用，只不写清url路径
 iconfont.woff2-------2   
 iconfont.ttf----------3
-注:src: url('iconfont.woff2?t=1715272877009') format('woff2')
-写清路径之后：src: url('/fonts/iconfont.woff2?t=1715272877009')format('woff2')
 
 
-demo.css
-iconfont.js
-demmo.html-----------这里对三种引用方式具体代码介绍。如"unicode引用、fontclass引用、symbol引用。"
-这里先演示unicode引用
+注:src: url('iconfont.woff2?t=1715272877009') format('woff2')不是白给你的，是给你url内本地路径是用来参考的，
+
+比如在微信小程序内根目录下创建一个文件夹叫做assets或者fonts，你需要改写成正确的本地路径，url后写('/fonts/iconfont.....')这种，你自己设定的路径，它给出的只供参考。
+
 */
-/*=======================================================================*/
+
+
+
+
+
+============================================================================
 
 /*具体生成的代码文件示例：*/
 
-/**----fonts
+/*---fonts文件夹，或者叫assets文件夹，里面存放本地的字体文件。
+
 	--woff2
 	--ttf
 	--woff
 
-**/
+*/
 
-/**----wxml
+/*----wxml
 <text class="iconfont  icon-mail"></text>
-**/
 
-/*具体生成的代码文件示例：*/
+这里采用了两个名字iconfont  icon-mail。用于所有iconfont的同一设置和具体到该mail，信封icon的名字。
+*/
 
-@font-face {
-    font-family: "iconfont"; /* Project id 4540186 */
-    src: url('/fonts/iconfont.woff2?t=1715303155794') format('woff2'),
-         url('/fonts/iconfont.woff?t=1715303155794') format('woff'),
-         url('/fonts/iconfont.ttf?t=1715303155794') format('truetype');
-  }
-  
-  .iconfont {
-    font-family: "iconfont" !important;
-    font-size: 100px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .icon-mail:before {
-    content: "\e812";
-    color:blue;
-  }
-  
 
-  
-   /*未学会服务器使用之前，先在本地导入字体包使用，创建fonts文件夹资源ttf、woff、woff2，之后学习服务器之后，用具体网址url或者cdn形式公开使用*/
+/*
+@font-face {
+
+    font-family: "iconfont"; 
+
+    src: url('/fonts/iconfont.woff2?t=1715303155794') format('woff2'),
+
+         url('/fonts/iconfont.woff?t=1715303155794') format('woff'),
+
+         url('/fonts/iconfont.ttf?t=1715303155794') format('truetype');
+
+  }
+iconfont进行同一样式设置，icon-mail具体到信封icon进行样式设置。
+.iconfont{
+   font-family: 'iconfont';
+   color: gray;
+   font-size: 30px;
+}
+.icon-mail::before{
+	content:"\e001";------------------这里无论什么都提取末尾四位，并在前面加上反斜杠，并使用引号括起，如：$&e001的‘\e001’
+	}
+*/
